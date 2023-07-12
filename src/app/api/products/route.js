@@ -15,9 +15,11 @@ export async function POST(req, res) {
 //     const products = await getAllProducts();
 //     return NextResponse.json(products);
 // }
-export async function DELETE(req, res) {
-    const request = await req.json();
-    console.log(request);
-        await deleteProduct(id);
-    return NextResponse.json({ message: "product deleted" });
+export default async function DELETE(req, res) {
+  const { id } = await req.json();
+  console.log(id); // for some validations
+  
+  await deleteProduct(id);
+  
+  return res.status(200).json({ message: "Product deleted" });
 }
