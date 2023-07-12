@@ -19,11 +19,15 @@ export const getAllProducts = async () => {
 }
 
 export const deleteProduct = async (id) => {
-    await prisma.product.delete({
-        where:{
-            id: id
-        }
-    })
+  const deletedProduct = await prisma.product.delete({
+    where: {
+      id: id,
+    },
+  });
+
+  return deletedProduct;
+};
+
 
     return products;
 }
